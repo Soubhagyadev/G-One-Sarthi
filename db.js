@@ -28,6 +28,7 @@ export async function initDb() {
 export async function getHomeData() {
   return { patient: await database.getFirstAsync('SELECT * FROM patients LIMIT 1'), reminder: await database.getFirstAsync('SELECT * FROM reminders WHERE is_active = 1 ORDER BY scheduled_time LIMIT 1') };
 }
+export async function updatePreferredLanguage(language) { await database.runAsync('UPDATE patients SET preferred_language = ? WHERE id = 1', language); }
 export async function markReminderDone(id) { await database.runAsync('UPDATE reminders SET last_completed_at = CURRENT_TIMESTAMP WHERE id = ?', id); }
 export async function getNextDifficulty(gameType) {
   const rows = await database.getAllAsync('SELECT accuracy, difficulty_level FROM game_sessions WHERE game_type = ? ORDER BY played_at DESC LIMIT 3', gameType);

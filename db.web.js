@@ -2,6 +2,7 @@
 const games = ['memory_recall', 'pattern_recognition', 'attention_speed', 'routine_recall', 'reasoning'];
 let reminder = { id: 1, scheduled_time: '10:00', label: 'Morning Blood Pressure & Vitamin D' };
 let sessions = [];
+let patient = { name: 'Amma', preferred_language: 'Assamese' };
 
 export async function initDb() {
   if (sessions.length) return;
@@ -12,7 +13,8 @@ export async function initDb() {
     }
   });
 }
-export async function getHomeData() { return { patient: { name: 'Amma', preferred_language: 'Assamese' }, reminder }; }
+export async function getHomeData() { return { patient, reminder }; }
+export async function updatePreferredLanguage(language) { patient = { ...patient, preferred_language: language }; }
 export async function markReminderDone() { reminder = { ...reminder, completed: true }; }
 export async function getNextDifficulty(gameType) {
   const recent = sessions.filter(x => x.game_type === gameType).slice(-3);
