@@ -5,6 +5,11 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
-    "android": { "package": "com.gone.saarthi" }
+    "android": {
+      "package": "com.gone.saarthi"
+    },
+    "plugins": [
+      "expo-asset"
+    ]
   }
 }
